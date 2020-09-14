@@ -1,4 +1,5 @@
 ---
+# See https://github.com/jvautier/project-cli
 fullname: jvautier/project-cli
 description: Manage github/gitlab projects properties
 tags:

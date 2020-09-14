@@ -52,7 +52,10 @@ class GithubCli():
         json = {
             "description": metas["description"]
         }        
+        
+        json.update(metas['github'])
         kwargs['json'] = json
+        print(kwargs)
         response = self.request('PATCH', '/repos/'+project_name, **kwargs)
         
         json = {

@@ -107,12 +107,13 @@ class GitlabCli():
         kwargs['json'] = json
         self.request('PUT', '/projects/'+project_name, **kwargs)
 
-        files = {
-            "avatar": open(metas["avatar"],'rb') 
-        }
-        kwargs['files'] = files
-        kwargs['headers'] = {}
-        self.request('PUT', '/projects/'+project_name, **kwargs)
+        if metas.get('avatar', None):
+            files = {
+                "avatar": open(metas["avatar"],'rb') 
+            }
+            kwargs['files'] = files
+            kwargs['headers'] = {}
+            self.request('PUT', '/projects/'+project_name, **kwargs)
 
 class ProjectCli():
     

@@ -13,7 +13,7 @@ import traceback
 class GithubCli():
     
     def __init__(self, **kwargs):
-        self._api_url = os.environ.get('GITHUB_API_URL', None)
+        self._api_url = os.environ.get('GITHUB_API_URL', "https://api.github.com")
         self._username = os.environ.get('GITHUB_API_USERNAME', None)
         self._api_key = os.environ.get('GITHUB_API_TOKEN', None)
 
@@ -51,23 +51,20 @@ class GithubCli():
         
         json = {
             "description": metas["description"]
-        }
-
-        json.update(metas['github'])
+        }        
         kwargs['json'] = json
-        self.request('PATCH', '/repos/'+project_name, **kwargs)
-
+        response = self.request('PATCH', '/repos/'+project_name, **kwargs)
+        
         json = {
             "names": metas["tags"]
         }
         kwargs['json'] = json
-        self.request('PUT', '/repos/'+project_name+'/topics', **kwargs)
-        
+        response = self.request('PUT', '/repos/'+project_name+'/topics', **kwargs)
 
 class GitlabCli():
 
     def __init__(self, **kwargs):
-        self._api_url = os.environ.get('GITLAB_API_URL', None)
+        self._api_url = os.environ.get('GITLAB_API_URL', "https://gitlab.com/api/v4")
         self._username = os.environ.get('GITLAB_API_USERNAME', None)
         self._api_key = os.environ.get('GITLAB_API_TOKEN', None)
 
@@ -98,21 +95,21 @@ class GitlabCli():
         metas = yaml.load(open(".gitlab.yml"), Loader=yaml.FullLoader)
         project_name = metas['fullname']
         project_name = urllib.parse.quote_plus(project_name)
-        
+        print(metas)
         json = {
             "description": metas["description"],
             "tag_list": metas["tags"],
         }
         json.update(metas['gitlab'])
         kwargs['json'] = json
+        self.request('PUT', '/projects/'+project_name, **kwargs)
 
         files = {
             "avatar": open(metas["avatar"],'rb') 
         }
         kwargs['files'] = files
         kwargs['headers'] = {}
-        
-        return self.request('PUT', '/projects/'+project_name, **kwargs)
+        self.request('PUT', '/projects/'+project_name, **kwargs)
 
 class ProjectCli():
     
@@ -130,7 +127,6 @@ class ProjectCli():
         args = parser.parse_args()
         args_for_func = vars(args)
         result = self.call(**args_for_func)
-        print(result)
 
 
 def main():

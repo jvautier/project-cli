@@ -1,0 +1,9 @@
+---
+fullname: jvautier/project-cli
+description: Manage github/gitlab projects properties
+tags:
+  - github
+  - gitlab
+  - api
+  - cli
+github: {}

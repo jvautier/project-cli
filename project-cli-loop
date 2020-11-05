@@ -1,0 +1,58 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+for f in $PWD/* ; do
+
+  if [ -f "$f/.github.yml" ]; then
+    
+    # if [ ! "$(grep "# See https://github.com/jvautier/project-cli" $f/.github.yml)" ]; then
+    #   echo "do $f/.github.yml"
+    #   sed -i '2i # See https://github.com/jvautier/project-cli' $f/.github.yml
+    # fi
+
+    # xdg-open "https://github.com/jvautier/$(basename $f)/settings"
+
+    cd $f
+    project-cli
+    git add . && git commit -m update && git push  
+   
+    # echo "# $f/.github.yml"
+    # fullname=$(cat $f/.github.yml | yq -r .fullname)
+    # if [ "$(basename $f)" == "$(basename $fullname)" ]; then
+    #   echo "ok"
+    #   cd $f
+    #   project-cli
+    #   git add . && git commit -m update && git push  
+    # else
+    #   echo "ko $f"
+    # fi 
+  fi
+
+  if [ -f "$f/.gitlab.yml" ]; then
+    
+    # if [ ! "$(grep "# See https://github.com/jvautier/project-cli" $f/.github.yml)" ]; then
+    #   echo "do $f/.github.yml"
+    #   sed -i '2i # See https://github.com/jvautier/project-cli' $f/.github.yml
+    # fi
+
+    # xdg-open "https://github.com/jvautier/$(basename $f)/settings"
+
+
+    cd $f
+    project-cli
+    git add . && git commit -m update && git push  
+   
+    # echo "# $f/.github.yml"
+    # fullname=$(cat $f/.github.yml | yq -r .fullname)
+    # if [ "$(basename $f)" == "$(basename $fullname)" ]; then
+    #   echo "ok"
+    #   cd $f
+    #   project-cli
+    #   git add . && git commit -m update && git push  
+    # else
+    #   echo "ko $f"
+    # fi 
+  fi 
+
+done

@@ -1,0 +1,10 @@
+{
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/black:2": {},
+		"ghcr.io/devcontainers-contrib/features/direnv-asdf:2": {},
+		"ghcr.io/devcontainers-contrib/features/tox:2": {},
+		"ghcr.io/devcontainers-contrib/features/twine:2": {}
+	},
+	"image": "mcr.microsoft.com/devcontainers/python:0-3.10",
+	"name": "jvautier/project-cli"
+}

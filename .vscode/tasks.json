@@ -1,0 +1,62 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-dependencies",
+            "type": "shell",
+            "command": "bash ./tasks/build-dependencies.sh"
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "bash ./tasks/build.sh"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "bash ./tasks/clean.sh"
+        },
+        {
+            "label": "coverage",
+            "type": "shell",
+            "command": "bash ./tasks/coverage.sh"
+        },
+        {
+            "label": "format",
+            "type": "shell",
+            "command": "bash ./tasks/format.sh"
+        },
+        {
+            "label": "install",
+            "type": "shell",
+            "command": "bash ./tasks/install.sh"
+        },
+        {
+            "label": "lint",
+            "type": "shell",
+            "command": "bash ./tasks/lint.sh"
+        },
+        {
+            "label": "publish",
+            "type": "shell",
+            "command": "bash ./tasks/publish.sh"
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "bash ./tasks/run.sh"
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "bash ./tasks/run.sh"
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "bash ./tasks/test.sh"
+        }
+    ]
+}

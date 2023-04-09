@@ -1,1 +1,5 @@
+-r ../requirements.in ../tests/requirements.in
+
 pip-tools
+black
+autoflake

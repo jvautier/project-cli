@@ -1,0 +1,2 @@
+echo "Publishing ..."
+set -eux

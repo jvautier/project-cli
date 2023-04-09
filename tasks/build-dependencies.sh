@@ -12,7 +12,8 @@ pip-compile \
     --output-file $2 \
     $1
 }
-
+echo "Building dependencies ..."
+set -eux
 _do requirements.in requirements.txt
 _do dev/requirements.in dev/requirements.txt
 _do tests/requirements.in tests/requirements.txt

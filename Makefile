@@ -1,17 +1,32 @@
-CLI_NAME = project-cli
+# define the name of the virtual environment directory
+VENV := venv
 
-install: uninstall
-	sudo cp ./$(CLI_NAME) /usr/bin/$(CLI_NAME)
-	sudo chmod +x /usr/bin/$(CLI_NAME)
+# default target, when make executed without arguments
+all: venv
 
-install-dev: uninstall
-	sudo ln -s $(PWD)/$(CLI_NAME) /usr/bin/$(CLI_NAME)
-	sudo chmod +x /usr/bin/$(CLI_NAME)
+$(VENV)/bin/activate: requirements.txt
+	python3 -m venv $(VENV)
+	./$(VENV)/bin/pip install -r requirements.txt
 
-install-summon-provider:
-	sudo mkdir -p /usr/local/lib/summon
-	sudo cp ./$(CLI_NAME)-summon-provider /usr/local/lib/summon/kv-cli
-	sudo chmod +x /usr/local/lib/summon/kv-cli
+# venv is a shortcut target
+venv: $(VENV)/bin/activate
 
-uninstall:
-	sudo rm -f /usr/bin/$(CLI_NAME)
+run: venv
+	./$(VENV)/bin/python3 project_cli/project_cli.py
+
+clean:
+	bash ./tasks/clean.sh $(VENV)
+
+test: venv
+	bash ./tasks/test.sh
+
+coverage:
+	bash ./tasks/coverage.sh
+
+lint:
+	bash ./tasks/lint.sh
+
+format:
+	bash ./tasks/format.sh 
+
+.PHONY: all venv run clean test coverage lint format

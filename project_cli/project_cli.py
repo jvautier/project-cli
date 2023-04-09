@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-import inspect
-import json
 import os
-import sys
-import traceback
 import urllib
 
 import requests
@@ -50,11 +46,11 @@ class GithubCli:
         json.update(metas["github"])
         kwargs["json"] = json
         print(kwargs)
-        response = self.request("PATCH", "/repos/" + project_name, **kwargs)
+        self.request("PATCH", "/repos/" + project_name, **kwargs)
 
         json = {"names": metas["tags"]}
         kwargs["json"] = json
-        response = self.request("PUT", "/repos/" + project_name + "/topics", **kwargs)
+        self.request("PUT", "/repos/" + project_name + "/topics", **kwargs)
 
 
 class GitlabCli:
@@ -115,7 +111,7 @@ class ProjectCli:
         self._parser = parser = argparse.ArgumentParser(description="project cli")
         args = parser.parse_args()
         args_for_func = vars(args)
-        result = self.call(**args_for_func)
+        self.call(**args_for_func)
 
 
 def main():

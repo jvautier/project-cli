@@ -1,0 +1,2 @@
+echo "Running..."
+set -eux

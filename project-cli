@@ -3,12 +3,13 @@
 import argparse
 import inspect
 import json
-import sys
 import os
-import yaml
-import urllib
-import requests
+import sys
 import traceback
+import urllib
+
+import requests
+import yaml
 
 
 class GithubCli():
